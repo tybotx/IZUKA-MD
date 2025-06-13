@@ -1,6 +1,6 @@
-import axios from "axios";
-import config from '../../config.cjs';
-import { cmd } from '../command.js';
+const axios = require("axios");
+const config = require('../config');
+const { cmd } = require('../command');
 
 cmd({
   pattern: "pair",
