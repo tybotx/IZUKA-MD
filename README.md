@@ -71,7 +71,7 @@ You will need a session ID to run the IZUKA-MD. Click the button below to obtain
 
 > **1️⃣Pair Code (Session ID)**
 
-<a href='https://zarya-8.onrender.com' target="_blank">
+<a href='https://zarya-session-by-dawens-boy-tech.onrender.com' target="_blank">
   <img alt='Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-orange?style=for-the-badge&logo=opencv&logoColor=black'/>
 </a>
 <br> 
@@ -123,7 +123,7 @@ You will be asked to fill in some stuffs like your session Id , and other stuffs
 
 Get session I'd here:
 
-https://vortex-xmd-session-site.onrender.com
+[https://zarya-session-by-dawens-boy-tech.onrender.com]
 
 After you're done filling it
 Click deploy button 
