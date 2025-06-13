@@ -27,7 +27,7 @@ cmd({
     }
 
     // Fetch latest version data from GitHub
-    const rawVersionUrl = 'https://raw.githubusercontent.com/DAWENS-BOY96/Zaryabot-V1/main/data/version.json';
+    const rawVersionUrl = 'https://raw.githubusercontent.com/DAWENS-BOY96/IZUKA-MD/main/data/version.json';
     let latestVersion = 'Unknown';
     let latestChangelog = 'No changelog available.';
     try {
@@ -53,7 +53,7 @@ cmd({
     const lastUpdate = fs.statSync(localVersionPath).mtime.toLocaleString();
 
     // GitHub stats
-    const githubRepo = 'https://github.com/DAWENS-BOY96/Zaryabot-V1';
+    const githubRepo = 'https://github.com/DAWENS-BOY96/IZUKA-MD';
 
     // Check update status
     let updateMessage = `✅ Your IZUKA MD bot is up-to-date!`;
