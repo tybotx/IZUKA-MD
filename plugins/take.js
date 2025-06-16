@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import config from '../../config.cjs';
+import config from '../../config.js';
 import { cmd } from '../command.js';
 
 cmd({
@@ -15,8 +15,8 @@ cmd({
     const [cmd, ...args] = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ') : [];
     const command = cmd.toLowerCase();
 
-    const defaultPackname = "IZUKA-MD";
-    const defaultAuthor = "BLACK";
+    const defaultPackname = config.STICKER_PACK || "IZUKA-MD";
+    const defaultAuthor = config.STICKER_AUTHOR || "BLACK";
 
     const quoted = m.quoted || {};
     if (!quoted) return m.reply(`Reply to a media message to use the ${prefix + command} command.`);
