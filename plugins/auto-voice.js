@@ -4,7 +4,7 @@ const { cmd } = require("../command");
 
 cmd({ on: "body" }, async (conn, m, msg, { from, body }) => {
   try {
-    const jsonUrl = "https://raw.githubusercontent.com/JawadYT36/KHAN-DATA/main/autovoice.json";
+    const jsonUrl = "https://raw.githubusercontent.com/DAWENS-BOY96/IZUKA-MD/main/autovoice.json"; // updated
     const res = await axios.get(jsonUrl);
     const voiceMap = res.data;
 
@@ -12,8 +12,6 @@ cmd({ on: "body" }, async (conn, m, msg, { from, body }) => {
       if (body.toLowerCase() === keyword.toLowerCase()) {
         if (config.AUTO_VOICE === "true") {
           const audioUrl = voiceMap[keyword];
-
-          // Ensure it's a .mp3 or .m4a file
           if (!audioUrl.endsWith(".mp3") && !audioUrl.endsWith(".m4a")) {
             return conn.sendMessage(from, { text: "Invalid audio format. Only .mp3 and .m4a supported." }, { quoted: m });
           }
@@ -21,7 +19,7 @@ cmd({ on: "body" }, async (conn, m, msg, { from, body }) => {
           await conn.sendPresenceUpdate("recording", from);
           await conn.sendMessage(from, {
             audio: { url: audioUrl },
-            mimetype: "audio/mpeg", // This works fine for .mp3 and .m4a
+            mimetype: "audio/mpeg",
             ptt: true
           }, { quoted: m });
         }
