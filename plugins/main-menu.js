@@ -59,7 +59,7 @@ async (conn, mek, m, { from, reply }) => {
 ╰━━━━━━━━━━━━━━━┈⊷
 
 🩸 *_WELCOME TO IZUKA MD_* 🩸
-🌐 Repo: https://github.com/themaster5093/THE-MASTER-MDX-1
+🌐 Repo: https://github.com/DAWENS-BOY96/IZUKA-MD
 `;
 
     let category = {};
