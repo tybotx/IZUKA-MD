@@ -15,8 +15,8 @@ cmd({
     const [cmdName, ...args] = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ') : [];
     const command = cmdName.toLowerCase();
 
-    const defaultPackname = config.STICKER_PACK || "IZUKA-MD";
-    const defaultAuthor = config.STICKER_AUTHOR || "DAWENS BOY";
+    const defaultPackname = config.STICKER_NAME || "IZUKA-MD";
+    const defaultAuthor = config.OWNER_NAME || "DAWENS BOY";
 
     const quoted = m.quoted || {};
     if (!quoted) return m.reply(`Reply to a media message to use the ${prefix + command} command.`);
@@ -30,7 +30,7 @@ cmd({
         const media = await quoted.download();
         if (!media) throw new Error('Failed to download media.');
 
-        const filePath = `./${Date.now()}.${quoted.mtype === 'imageMessage' ? 'png' : 'mp4'}`;
+        const filePath = `./temp-${Date.now()}.${quoted.mtype === 'imageMessage' ? 'png' : 'mp4'}`;
         await fs.writeFile(filePath, media);
 
         if (quoted.mtype === 'imageMessage') {
@@ -65,8 +65,7 @@ cmd({
       }
 
     } catch (error) {
-      console.error("Sticker/take error:", error);
-      await m.reply('❌ Something went wrong while processing your request.');
+      await m.reply('❌ Error while processing your request.');
     }
   }
 });
