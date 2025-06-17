@@ -1,6 +1,6 @@
-import fs from 'fs/promises';
-import config from '../../config.js';
-import { cmd } from '../command.js';
+const fs = require('fs/promises');
+const config = require('../../config');
+const { cmd } = require('../command');
 
 cmd({
   pattern: "sticker",
@@ -12,11 +12,11 @@ cmd({
   execute: async (m, gss) => {
     const prefixMatch = m.body.match(/^[\\/!#.]/);
     const prefix = prefixMatch ? prefixMatch[0] : '/';
-    const [cmd, ...args] = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ') : [];
-    const command = cmd.toLowerCase();
+    const [cmdName, ...args] = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ') : [];
+    const command = cmdName.toLowerCase();
 
     const defaultPackname = config.STICKER_PACK || "IZUKA-MD";
-    const defaultAuthor = config.STICKER_AUTHOR || "BLACK";
+    const defaultAuthor = config.STICKER_AUTHOR || "DAWENS BOY";
 
     const quoted = m.quoted || {};
     if (!quoted) return m.reply(`Reply to a media message to use the ${prefix + command} command.`);
@@ -24,7 +24,7 @@ cmd({
     try {
       if (['sticker', 's'].includes(command)) {
         if (quoted.mtype !== 'imageMessage' && quoted.mtype !== 'videoMessage') {
-          return m.reply(`Send/Reply with an image or video to convert into a sticker ${prefix + command}`);
+          return m.reply(`Send/Reply with an image or video to convert into a sticker using ${prefix + command}`);
         }
 
         const media = await quoted.download();
@@ -65,8 +65,8 @@ cmd({
       }
 
     } catch (error) {
-      console.error("Sticker error:", error);
-      await m.reply('Something went wrong while processing your request.');
+      console.error("Sticker/take error:", error);
+      await m.reply('❌ Something went wrong while processing your request.');
     }
   }
 });
