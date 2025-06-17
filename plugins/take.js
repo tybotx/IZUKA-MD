@@ -19,18 +19,20 @@ cmd({
     const defaultAuthor = config.OWNER_NAME || "DAWENS BOY";
 
     const quoted = m.quoted || {};
-    if (!quoted) return m.reply(`Reply to a media message to use the ${prefix + command} command.`);
+    if (!quoted || !quoted.download) {
+      return m.reply(`Reply to a media message to use the ${prefix + command} command.`);
+    }
 
     try {
       if (['sticker', 's'].includes(command)) {
         if (quoted.mtype !== 'imageMessage' && quoted.mtype !== 'videoMessage') {
-          return m.reply(`Send/Reply with an image or video to convert into a sticker using ${prefix + command}`);
+          return m.reply(`Send/Reply with an image or video to convert into a sticker ${prefix + command}`);
         }
 
         const media = await quoted.download();
         if (!media) throw new Error('Failed to download media.');
 
-        const filePath = `./temp-${Date.now()}.${quoted.mtype === 'imageMessage' ? 'png' : 'mp4'}`;
+        const filePath = `./${Date.now()}.${quoted.mtype === 'imageMessage' ? 'png' : 'mp4'}`;
         await fs.writeFile(filePath, media);
 
         if (quoted.mtype === 'imageMessage') {
@@ -63,9 +65,9 @@ cmd({
           author: defaultAuthor
         });
       }
-
-    } catch (error) {
-      await m.reply('❌ Error while processing your request.');
+    } catch (err) {
+      console.error("Error in sticker/take command:", err);
+      await m.reply('❌ Something went wrong while processing your request.');
     }
   }
 });
